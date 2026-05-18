@@ -13,4 +13,8 @@
 
     <name>Archetype - services</name>
     <description>Business Service Modules</description>
+
+    <modules>
+        <module>user-service</module>
+    </modules>
 </project>
