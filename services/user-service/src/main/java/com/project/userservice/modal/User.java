@@ -1,12 +1,9 @@
 package com.project.userservice.modal;
 
 import com.project.common.domain.UserRole;
-import com.project.userservice.domain.UserStatus;
+import com.project.common.domain.UserStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,9 +11,11 @@ import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Builder
+@Table(name="users")
 public class User {
 
     @Id
@@ -54,7 +53,7 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    private LocalDateTime lastLong;
+    private LocalDateTime lastLogin;
 
     private LocalDateTime suspendedAt;
 
