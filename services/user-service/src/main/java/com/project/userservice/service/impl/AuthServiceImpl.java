@@ -11,6 +11,7 @@ import com.project.userservice.payload.SignupRequest;
 import com.project.userservice.repository.UserRepository;
 import com.project.userservice.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public AuthResponse signup(SignupRequest request) {
@@ -35,7 +37,7 @@ public class AuthServiceImpl implements AuthService {
         User user = User.builder()
                 .fullName(request.getFullName())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .phone(request.getPhone())
                 .lastLogin(LocalDateTime.now())
