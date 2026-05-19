@@ -48,6 +48,13 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler({BadCredentialsException.class, InvalidTokenException.class})
+    public ResponseEntity<ErrorResponse> handleUnauthorized(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                ErrorResponse.of(401, "Unauthorized", ex.getMessage())
+        );
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleAll(Exception ex) {
         log.error("Unhandled exception", ex);
