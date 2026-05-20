@@ -2,11 +2,13 @@ package com.project.common.dto.response;
 
 import com.project.common.domain.UserRole;
 import com.project.common.domain.UserStatus;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 public class UserResponse {
 
     private Long id;

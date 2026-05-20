@@ -1,24 +1,42 @@
 package com.project.userservice.mapper;
 
-
 import com.project.common.dto.response.UserResponse;
 import com.project.userservice.modal.User;
 
-public class UserMapper {
+import java.util.List;
 
-    public static UserResponse toDTO(User user) {
-        UserResponse dto = new UserResponse();
-        dto.setId(user.getId());
-        dto.setEmail(user.getEmail());
-        dto.setFullName(user.getFullName());
-        dto.setPhone(user.getPhone());
-        dto.setProfileImage(user.getProfileImage());
-        dto.setRole(user.getRole());
-        dto.setStatus(user.getStatus());
-        dto.setLastLogin(user.getLastLogin());
-        dto.setCreatedAt(user.getCreatedAt());
+public final class UserMapper {
 
-        return dto;
+    private UserMapper() {
     }
 
+    public static UserResponse toDTO(User user) {
+
+        if (user == null) {
+            return null;
+        }
+
+        return UserResponse.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .fullName(user.getFullName())
+                .phone(user.getPhone())
+                .profileImage(user.getProfileImage())
+                .role(user.getRole())
+                .status(user.getStatus())
+                .lastLogin(user.getLastLogin())
+                .createdAt(user.getCreatedAt())
+                .build();
+    }
+
+    public static List<UserResponse> toDTOList(List<User> users) {
+
+        if (users == null) {
+            return List.of();
+        }
+
+        return users.stream()
+                .map(UserMapper::toDTO)
+                .toList();
+    }
 }
