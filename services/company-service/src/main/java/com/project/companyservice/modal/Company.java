@@ -42,6 +42,10 @@ public class Company {
 
     private String website;
 
+    private String email;
+
+    private String phone;
+
     private Integer foundedYear;
 
     @Enumerated(EnumType.STRING)
@@ -55,6 +59,9 @@ public class Company {
 
     @Enumerated(EnumType.STRING)
     private CompanyStatus companyStatus;
+
+
+    private Boolean verified=false;
 
     @Column(unique = true)
     private String registrationNumber;
