@@ -25,7 +25,7 @@ public interface CompanyService {
 
     CompanyResponse verifyCompany(Long companyId);
 
-    void deleteCompany(Long companyId);
+    void deleteCompany(Long companyId,  Long ownerId);
 
     CompanyResponse deactivateCompany(Long companyId);
 
