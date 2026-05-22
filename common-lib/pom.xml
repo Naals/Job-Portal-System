@@ -16,6 +16,10 @@
     <name>job-portal-common</name>
     <description>Shared Library - enums, exceptions, and DTOs for all services</description>
 
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
