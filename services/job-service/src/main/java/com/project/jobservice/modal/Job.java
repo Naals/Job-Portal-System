@@ -44,6 +44,9 @@ public class Job {
     @Column(nullable = false)
     private Long companyId;
 
+    @Column(nullable = false)
+    private Long employerId;
+
     @Embedded
     private JobLocation location;
 
