@@ -1,4 +1,4 @@
-package com.project.common.dto;
+package com.project.common.dto.response;
 
 import com.project.common.domain.ExperienceLevel;
 import com.project.common.domain.JobStatus;

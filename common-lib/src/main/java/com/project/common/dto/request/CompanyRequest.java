@@ -1,8 +1,9 @@
-package com.project.common.dto;
+package com.project.common.dto.request;
 
 import com.project.common.domain.CompanySize;
 import com.project.common.domain.CompanyType;
 import com.project.common.domain.IndustryType;
+import com.project.common.dto.response.SocialLinkResponse;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

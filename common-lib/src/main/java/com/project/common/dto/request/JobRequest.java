@@ -1,4 +1,4 @@
-package com.project.common.dto;
+package com.project.common.dto.request;
 
 import com.project.common.domain.*;
 import jakarta.validation.constraints.*;
