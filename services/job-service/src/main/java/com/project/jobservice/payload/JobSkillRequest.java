@@ -1,0 +1,22 @@
+package com.project.jobservice.payload;
+
+import com.project.common.domain.SkillCategory;
+import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class JobSkillRequest {
+
+    @NotBlank(message = "Skill name is required")
+    @Size(max = 100, message = "Name must not exceed 100 characters")
+    private String name;
+
+    @NotNull(message = "Skill category is required")
+    private SkillCategory category;
+}
