@@ -1,8 +1,8 @@
 package com.project.companyservice.service;
 
 import com.project.common.domain.*;
-import com.project.common.dto.CompanyRequest;
-import com.project.common.dto.CompanyResponse;
+import com.project.common.dto.request.CompanyRequest;
+import com.project.common.dto.response.CompanyResponse;
 import com.project.companyservice.modal.Company;
 
 import java.util.List;

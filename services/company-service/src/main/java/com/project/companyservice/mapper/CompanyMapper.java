@@ -3,7 +3,8 @@ package com.project.companyservice.mapper;
 
 
 import com.project.common.domain.*;
-import com.project.common.dto.*;
+import com.project.common.dto.response.CompanyResponse;
+import com.project.common.dto.response.SocialLinkResponse;
 import com.project.companyservice.modal.Company;
 import com.project.companyservice.modal.SocialLink;
 
