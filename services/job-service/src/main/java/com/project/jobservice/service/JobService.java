@@ -1,7 +1,7 @@
 package com.project.jobservice.service;
 
-import com.project.common.dto.JobRequest;
-import com.project.common.dto.JobResponse;
+import com.project.common.dto.request.JobRequest;
+import com.project.common.dto.response.JobResponse;
 import com.project.jobservice.payload.JobSearchRequest;
 
 import java.util.List;

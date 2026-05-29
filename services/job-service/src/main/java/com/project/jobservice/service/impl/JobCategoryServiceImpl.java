@@ -1,6 +1,6 @@
 package com.project.jobservice.service.impl;
 
-import com.project.common.dto.JobCategoryResponse;
+import com.project.common.dto.response.JobCategoryResponse;
 import com.project.jobservice.exception.BadRequestException;
 import com.project.jobservice.exception.ResourceNotFoundException;
 import com.project.jobservice.mapper.JobCategoryMapper;

@@ -1,7 +1,8 @@
 package com.project.jobservice.controller;
 
 
-import com.project.common.dto.*;
+import com.project.common.dto.request.JobRequest;
+import com.project.common.dto.response.JobResponse;
 import com.project.jobservice.payload.JobSearchRequest;
 import com.project.jobservice.service.JobService;
 import jakarta.validation.Valid;

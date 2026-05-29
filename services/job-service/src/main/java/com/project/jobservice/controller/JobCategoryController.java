@@ -1,6 +1,6 @@
 package com.project.jobservice.controller;
 
-import com.project.common.dto.JobCategoryResponse;
+import com.project.common.dto.response.JobCategoryResponse;
 import com.project.jobservice.mapper.JobCategoryMapper;
 import com.project.jobservice.modal.JobCategory;
 import com.project.jobservice.payload.JobCategoryRequest;

@@ -1,6 +1,8 @@
 package com.project.jobservice.mapper;
 
-import com.project.common.dto.*;
+import com.project.common.dto.request.JobRequest;
+import com.project.common.dto.response.CompanyResponse;
+import com.project.common.dto.response.JobResponse;
 import com.project.jobservice.modal.Job;
 import com.project.jobservice.modal.embeddable.JobLocation;
 import com.project.jobservice.modal.embeddable.SalaryRange;

@@ -1,7 +1,9 @@
 package com.project.jobservice.service.impl;
 
 import com.project.common.domain.JobStatus;
-import com.project.common.dto.*;
+import com.project.common.dto.request.JobRequest;
+import com.project.common.dto.response.CompanyResponse;
+import com.project.common.dto.response.JobResponse;
 import com.project.jobservice.exception.*;
 import com.project.jobservice.mapper.JobMapper;
 import com.project.jobservice.modal.Job;
