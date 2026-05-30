@@ -4,14 +4,20 @@ import com.project.common.dto.request.JobRequest;
 import com.project.common.dto.response.CompanyResponse;
 import com.project.common.dto.response.JobResponse;
 import com.project.jobservice.modal.Job;
+import com.project.jobservice.modal.JobCategory;
+import com.project.jobservice.modal.JobSkill;
+import com.project.jobservice.modal.JobTag;
 import com.project.jobservice.modal.embeddable.JobLocation;
 import com.project.jobservice.modal.embeddable.SalaryRange;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Component
 public class JobMapper {
 
-    public static Job toEntity(JobRequest req, Long employerId) {
+    public static Job toEntity(JobRequest req, Long employerId, JobCategory category, Set<JobSkill> skills, Set<JobTag> tags) {
         if (req == null) return null;
 
         return Job.builder()
@@ -21,6 +27,9 @@ public class JobMapper {
                 .responsibilities(req.getResponsibilities())
                 .benefits(req.getBenefits())
                 .employerId(employerId)
+                .jobCategory(category)
+                .jobTag(tags)
+                .jobSkill(skills)
                 .location(buildLocation(req))
                 .salaryRange(buildSalaryRange(req))
                 .jobType(req.getJobType())
@@ -45,6 +54,9 @@ public class JobMapper {
                 .benefits(job.getBenefits())
                 .company(companyResponse)
                 .employerId(job.getEmployerId())
+                .jobCategory(JobCategoryMapper.toResponse(job.getJobCategory(), false))
+                .jobTag(job.getJobTag().stream().map(JobTagMapper::toResponse).collect(Collectors.toSet()))
+                .jobSkill(job.getJobSkill().stream().map(JobSkillMapper::toResponse).collect(Collectors.toSet()))
                 .address(loc != null ? loc.getAddress() : null)
                 .city(loc != null ? loc.getCity() : null)
                 .state(loc != null ? loc.getState() : null)
@@ -67,11 +79,14 @@ public class JobMapper {
                 .build();
     }
 
-    public static void updateEntityFromDto(JobRequest req, Job job) {
+    public static void updateEntityFromDto(JobRequest req, Job job, JobCategory category, Set<JobSkill> skills, Set<JobTag> tags) {
         if (req == null || job == null) return;
 
         job.setTitle(req.getTitle());
         job.setDescription(req.getDescription());
+        job.setJobCategory(category);
+        job.setJobSkill(skills);
+        job.setJobTag(tags);
         job.setRequirements(req.getRequirements());
         job.setResponsibilities(req.getResponsibilities());
         job.setBenefits(req.getBenefits());
