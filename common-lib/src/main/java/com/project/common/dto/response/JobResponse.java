@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -28,6 +29,9 @@ public class JobResponse {
 
     private CompanyResponse company;
     private Long employerId;
+    private JobCategoryResponse jobCategory;
+    private Set<JobSkillResponse> jobSkill;
+    private Set<JobTagResponse> jobTag;
 
     // Location
     private String address;
