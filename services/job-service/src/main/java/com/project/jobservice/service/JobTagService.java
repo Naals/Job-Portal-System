@@ -5,6 +5,7 @@ import com.project.jobservice.modal.JobTag;
 import com.project.jobservice.payload.JobTagRequest;
 
 import java.util.List;
+import java.util.Set;
 
 public interface JobTagService {
 
@@ -19,4 +20,6 @@ public interface JobTagService {
     void deleteTag(Long id);
 
     JobTag getTagEntityById(Long id);
+
+    Set<JobTag> getTagsByIds(Set<Long> ids);
 }
