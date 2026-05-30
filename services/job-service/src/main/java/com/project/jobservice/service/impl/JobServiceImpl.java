@@ -7,18 +7,27 @@ import com.project.common.dto.response.JobResponse;
 import com.project.jobservice.exception.*;
 import com.project.jobservice.mapper.JobMapper;
 import com.project.jobservice.modal.Job;
+import com.project.jobservice.modal.JobCategory;
+import com.project.jobservice.modal.JobSkill;
+import com.project.jobservice.modal.JobTag;
 import com.project.jobservice.payload.JobSearchRequest;
 import com.project.jobservice.repository.JobRepository;
 import com.project.jobservice.repository.JobSpecification;
+import com.project.jobservice.service.JobCategoryService;
 import com.project.jobservice.service.JobService;
 
+import java.util.Collections;
 import java.util.List;
+
+import com.project.jobservice.service.JobSkillService;
+import com.project.jobservice.service.JobTagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -26,11 +35,25 @@ import java.time.LocalDateTime;
 public class JobServiceImpl implements JobService {
 
     private final JobRepository jobRepository;
+    private final JobCategoryService jobCategoryService;
+    private final JobSkillService jobSkillService;
+    private final JobTagService jobTagService;
 
     @Override
     @Transactional
     public JobResponse createJob(Long employerId, JobRequest req) {
-        Job job = JobMapper.toEntity(req, employerId);
+
+        JobCategory category = jobCategoryService.getCategoryEntityById(req.getCategoryId());
+
+        Set<JobSkill> jobSkillSet = req.getSkillIds()!=null
+                 ?jobSkillService.getSkillsByIds(req.getSkillIds())
+                : Collections.emptySet();
+
+        Set<JobTag> jobTagSet = req.getTagIds() != null
+                ? jobTagService.getTagsByIds(req.getTagIds())
+                : Collections.emptySet();
+
+        Job job = JobMapper.toEntity(req, employerId, category, jobSkillSet, jobTagSet);
 
         Job savedJob = jobRepository.save(job);
         return toConvertResponse(savedJob);
@@ -66,8 +89,17 @@ public class JobServiceImpl implements JobService {
     public JobResponse updateJob(Long jobId, Long employerId, JobRequest req) {
         Job job = verifyAndGetJob(jobId, employerId);
 
-        // Update fields from request matching your DTO mappings
-        JobMapper.updateEntityFromDto(req, job);
+        JobCategory category = jobCategoryService.getCategoryEntityById(req.getCategoryId());
+
+        Set<JobSkill> jobSkillSet = req.getSkillIds()!=null
+                ?jobSkillService.getSkillsByIds(req.getSkillIds())
+                : Collections.emptySet();
+
+        Set<JobTag> jobTagSet = req.getTagIds() != null
+                ? jobTagService.getTagsByIds(req.getTagIds())
+                : Collections.emptySet();
+
+        JobMapper.updateEntityFromDto(req, job, category, jobSkillSet, jobTagSet);
         job.setUpdatedAt(LocalDateTime.now());
 
         Job updatedJob = jobRepository.save(job);
