@@ -1,6 +1,7 @@
 package com.project.resumeservice.service;
 
 import com.project.common.dto.response.WorkExperienceResponse;
+import com.project.resumeservice.modal.WorkExperience;
 import com.project.resumeservice.payload.AddWorkExperience;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface WorkExperienceService {
     WorkExperienceResponse updateWorkExperience(Long resumeId, Long workExperienceId, AddWorkExperience req);
 
     void deleteWorkExperience(Long resumeId, Long workExperienceId, Long candidateId);
+
+    WorkExperience getWorkExperience(Long workExperienceId);
 }
