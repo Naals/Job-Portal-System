@@ -12,7 +12,7 @@ public interface WorkExperienceService {
 
     List<WorkExperienceResponse> getWorkExperiences(Long resumeId);
 
-    WorkExperienceResponse updateWorkExperience(Long resumeId, Long workExperienceId, AddWorkExperience req);
+    WorkExperienceResponse updateWorkExperience(Long resumeId, Long candidateId, Long workExperienceId, AddWorkExperience req);
 
     void deleteWorkExperience(Long resumeId, Long workExperienceId, Long candidateId);
 
